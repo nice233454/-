@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { supabase, Indictment } from '../lib/supabase';
-import { Save, FileText, Download } from 'lucide-react';
+import { exportToWord } from '../lib/wordExport';
+import { Save, FileText, Download, File } from 'lucide-react';
 
 interface IndictmentFormProps {
   onSave: () => void;
@@ -564,6 +565,15 @@ ___________________________
         >
           <Save size={20} />
           {isSaving ? 'Сохранение...' : editData ? 'Обновить' : 'Сохранить'}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => exportToWord(formData)}
+          className="flex items-center gap-2 px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 font-medium transition-colors"
+        >
+          <File size={20} />
+          Экспорт в Word
         </button>
 
         <button
